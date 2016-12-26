@@ -21,6 +21,7 @@ $(document).ready(function() {
                 const currentTarget = res.currentTarget;
                 const imagePath = currentTarget.response;
                 $('#js-input-link-container').css('display', 'none');
+                $('#js-note-container').css('display', 'none');
                 $('#js-overlay-image').attr('src', imagePath);
                 $('#js-overlay-image-container').css('display', 'block');
             };
