@@ -47,6 +47,14 @@ app.post('/', (req, res) => {
                     left: 250 - parseInt(newMeta.width / 2, 10)
                 })
                 .toFile(finalImagePath);
+            const promises = [imagePath, resizedImagePath]
+                .map(p => new Promise((resolve, reject) => {
+                    fs.remove(p, err => {
+                        if (err) reject(err);
+                        else resolve();
+                    });
+                }));
+            yield Promise.all(promises);
 
             res.send(`/images/${path.basename(finalImagePath)}`);
         } catch (err) {
