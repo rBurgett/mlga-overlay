@@ -20,7 +20,7 @@ $(document).ready(function() {
             xhr.onload = function(res) {
                 const currentTarget = res.currentTarget;
                 const imagePath = currentTarget.response;
-                $('#js-input-link').css('display', 'none');
+                $('#js-input-link-container').css('display', 'none');
                 $('#js-overlay-image').attr('src', imagePath);
                 $('#js-overlay-image-container').css('display', 'block');
             };
