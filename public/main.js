@@ -1,10 +1,5 @@
 $(document).ready(() => {
 
-    // $('#js-image-form').on('submit', e => {
-    //     e.preventDefault();
-    //     console.log(e);
-    // });
-
     $('#js-input-link').on('click', e => {
         e.preventDefault();
         $('#js-file-input')[0].click();
@@ -13,7 +8,6 @@ $(document).ready(() => {
     $('#js-file-input').on('change', e => {
         e.preventDefault();
         if (e.target.files.length > 0) {
-            // $('#js-image-form').submit();
             const [file] = e.target.files;
             const formData = new window.FormData();
             formData.append('imageFile', file);
@@ -23,8 +17,11 @@ $(document).ready(() => {
                 console.error(err);
                 swal('Oops!', err.message, 'error');
             };
-            xhr.onload = () => {
-                swal('Success', 'File successfully submitted.', 'success');
+            xhr.onload = ({ currentTarget }) => {
+                const imagePath = currentTarget.response;
+                $('#js-input-link').css('display', 'none');
+                $('#js-overlay-image').attr('src', imagePath);
+                $('#js-overlay-image-container').css('display', 'block');
             };
             xhr.send(formData);
         }
