@@ -65,7 +65,7 @@ app.post('/', (req, res) => {
 
 });
 
-const port = 3300;
+const port = 80;
 
 const server = app.listen(port, () => {
     console.log('App listening at port', server.address().port);
